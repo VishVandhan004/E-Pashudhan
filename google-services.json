@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "35621853849",
+    "project_id": "e-pashudhan",
+    "storage_bucket": "e-pashudhan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35621853849:android:b1ca0b0632770623e0b608",
+        "android_client_info": {
+          "package_name": "com.rnapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "35621853849-fmdj17sv5uaeijvn2o2m13dbe59guqho.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDj0pFS6lnlBZzwPgm8GMovlKPlTcvp0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "35621853849-fmdj17sv5uaeijvn2o2m13dbe59guqho.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
