@@ -11,12 +11,7 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import client from '../api/client';
-export default  function Signup() {
-    const signup1 = () => (
-      client.post('/register-user')
-
-    )
-  
+export default  function Signup( { navigation } ) {
       return (
         <LinearGradient
           style={styles.container}
@@ -79,7 +74,7 @@ export default  function Signup() {
             </View>
             <TouchableOpacity style={styles.buttonstyle}>
               <Text
-                onPress={signup1}
+              onPress={() =>navigation.navigate("options")} 
                 style={styles.buttontext}
               >
                 SIGN UP

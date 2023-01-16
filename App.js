@@ -1,5 +1,7 @@
 import * as React from "react";
-import Login from "./login/Login";
+import FLogin from "./login/FLogin";
+import ALogin from "./login/ALogin";
+import CLogin from "./login/CLogin";
 import Signup from "./signup/Signup";
 import Intro from "./screens/Intro";
 import AboutUs from "./drawer/AboutUs";
@@ -8,12 +10,13 @@ import FPass from "./login/FPass";
 import ContactUs from "./drawer/ContactUs";
 import AddCattle from "./drawer/AddCattle";
 import Profile from "./drawer/Profile";
-import ADashboard from"./drawer1/ADashboard";
+import ADashboard from "./drawer1/ADashboard";
 import CustomerDetails from "./drawer1/CustomerDetails";
 import FarmerDetails from "./drawer1/FarmerDetails";
 import AboutUs1 from "./drawer2/AboutUs1";
 import CDashboard from "./drawer2/CDashboard";
 import ContactUs1 from "./drawer2/ContactUs1";
+import Options from "./screens/Options";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -51,19 +54,18 @@ const HomeTabsComp2 = () => {
   );
 };
 export default function App() {
-  const fetchApi = async () => { 
-    try{
-      await axios.get('http://192.168.27.231:3001/');
-    console.log(res.data);
-    }
-    catch (error) {
+  const fetchApi = async () => {
+    try {
+      await axios.get("http://192.168.27.231:3001/");
+      console.log(res.data);
+    } catch (error) {
       console.log(error.message);
     }
-    };
-    
-    useEffect(() => {
-      fetchApi()
-    },[])
+  };
+
+  useEffect(() => {
+    fetchApi();
+  }, []);
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -74,27 +76,34 @@ export default function App() {
             headerShown: false,
           }}
         />
-          <Stack.Screen
-            name="hometabcomps"
-            component={HomeTabsComp}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="hometabcomps1"
-            component={HomeTabsComp1}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="hometabcomps2"
-            component={HomeTabsComp2}
-            options={{
-              headerShown: false,
-            }}
-          />
+        <Stack.Screen
+          name="options"
+          component={Options}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="hometabcomps"
+          component={HomeTabsComp}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="hometabcomps1"
+          component={HomeTabsComp1}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="hometabcomps2"
+          component={HomeTabsComp2}
+          options={{
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="s"
           component={Signup}
@@ -104,11 +113,26 @@ export default function App() {
         />
         <Stack.Screen
           name="l"
-          component={Login}
+          component={FLogin}
           options={{
             headerShown: false,
           }}
         />
+        <Stack.Screen
+          name="l1"
+          component={ALogin}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="l2"
+          component={CLogin}
+          options={{
+            headerShown: false,
+          }}
+        />
+
         <Stack.Screen
           name="f"
           component={FPass}

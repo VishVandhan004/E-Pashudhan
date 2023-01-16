@@ -1,15 +1,15 @@
-// E- PASHUDHAN LOGIN PORTAL
+// E- PASHUDHAN ADMIN LOGIN PORTAL
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Button, TextInput, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-export default function Login({ navigation }){
+export default function ALogin({ navigation }){
 return (
         <LinearGradient style={styles.container} colors={["#ffffff", "#ffc172"]} start={{ x: 1, y: 0.05 }} end={{ x: 1, y: 1 }}>
           <View>
             <Image
               style={styles.image}
               source={require("../assets/images/cow.png")} />
-            <Text style={styles.TopEP}>E-Pashudhan Login</Text>
+            <Text style={styles.TopEP}>Admin Login</Text>
           </View>
           <View style={styles.UContainer}>
             <Text>Enter your Username</Text>
@@ -23,7 +23,7 @@ return (
               secureTextEntry={true} />
           </View>
           <TouchableOpacity style={styles.buttonstyle}>
-            <Text style={styles.txt} onPress={() => navigation.navigate("hometabcomps")}>LOGIN</Text>
+            <Text style={styles.txt} onPress={() => navigation.navigate("hometabcomps1")}>LOGIN</Text>
           </TouchableOpacity>
           <View>
             <Text style={styles.stext} onPress={() => navigation.navigate("f")}>Forgot Password??</Text>
