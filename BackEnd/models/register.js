@@ -8,12 +8,10 @@ const RegisterSchema = new mongoose.Schema({
   PhoneNumber: {
     type: String,
     required: true,
-    unique: true,
   },
   State: {
     type: String,
     required: true,
-    unique: false,
   },
   District: {
     type: String,
@@ -26,7 +24,6 @@ const RegisterSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true,
   },
   password: {
     type: String,

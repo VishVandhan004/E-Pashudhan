@@ -5,14 +5,14 @@ const RegisterUser = require("./models/register");
 var port = 3001;
 require("dotenv").config();
 require("./models/db");
-const name = "ethnic";
-const phNo = "6966969696";
+const name = "kausthubh";
+const phNo = "62316212";
 const state = "Telangana";
 const district = "jdfs";
 const houseNo = "svd";
-const Nusername = "et69";
+const Nusername = "jdsfjsd";
 const Npassword = "007";
-app.post("/create-user", async (req, res) => {
+app.post("/login-user", async (req, res) => {
   const isNewUser = await LoginUser.isThisUsernameInuse(Nusername);
   if (!isNewUser)
     return res.json({
@@ -48,7 +48,7 @@ app.post("/register-user", async (req, res) => {
   res.json(register);
 });
 app.get("/", (req, res) => {
-  res.send('welocome to backend!');
+  res.send('welcome to backend!');
 });
 
 app.listen(port, () => {
