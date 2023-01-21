@@ -1,5 +1,7 @@
 // E- PASHUDHAN SIGNUP PORTAL
 import React, { useState, useEffect } from "react";
+import { RadioButton } from 'react-native-paper';
+
 import {
   StyleSheet,
   Text,
@@ -10,80 +12,218 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
-import client from '../api/client';
-export default  function Signup( { navigation } ) {
-      return (
-        <LinearGradient
-          style={styles.container}
-          colors={["#ffffff", "#ffc172"]}
-          start={{ x: 1, y: 0.05 }}
-          end={{ x: 1, y: 1 }}
-        >
-          <ScrollView>
-            <View>
-              <Image
-                style={styles.image}
-                source={require("../assets/images/cow.png")} />
-              <Text style={styles.TopEP}>E-Pashudhan SignUp</Text>
-            </View>
-            <View style={styles.Container}>
-              <Text>Enter your Name</Text>
-              <TextInput
-                style={styles.textInput}
-                placeholder="                              ABCD" />
-            </View>
-            <View style={styles.Container}>
-              <Text>Enter your Phone Number</Text>
-              <TextInput
-                style={styles.textInput}
-                placeholder="                    XXXXXXXXXX" />
-            </View>
-            <View style={styles.Container}>
-              <Text>Enter your State</Text>
-              <TextInput
-                style={styles.textInput}
-                placeholder="                            State" />
-            </View>
-            <View style={styles.Container}>
-              <Text>Enter your District</Text>
-              <TextInput style={styles.textInput} placeholder="                           District" />
-            </View>
-            <View style={styles.Container}>
-              <Text>Enter your House No</Text>
-              <TextInput style={styles.textInput} placeholder="                           House No" />
-            </View>
-            <View style={styles.Container}>
-              <Text>Create a Username</Text>
-              <TextInput
-                style={styles.textInput}
-                placeholder="                        ABCD@1234" />
-            </View>
-            <View style={styles.Container}>
-              <Text>Create a Password</Text>
-              <TextInput
-                style={styles.textInput}
-                secureTextEntry={true}
-                placeholder="                             XXXXXX" />
-            </View>
-            <View style={styles.Container}>
-              <Text>Re enter the Password</Text>
-              <TextInput
-                style={styles.textInput}
-                secureTextEntry={true}
-                placeholder="                             XXXXXX" />
-            </View>
-            <TouchableOpacity style={styles.buttonstyle}>
-              <Text
-              onPress={() =>navigation.navigate("options")} 
-                style={styles.buttontext}
-              >
-                SIGN UP
-              </Text>
-            </TouchableOpacity>
-          </ScrollView>
-        </LinearGradient>
-      );
+import Constants from "expo-constants";
+import axios from "axios";
+const baseUrl = "http://192.168.144.208:3000/register-user";
+
+// import client from '../api/client';
+export default function Signup({ navigation }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [houseNo, setHouseNo] = useState("");
+  const [district, setDistrict] = useState("");
+  const [stateAddress, setStateAddress] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [createdUsername, setCreatedUsername] = useState("");
+  const [createdPassword, setCreatedPassword] = useState("");
+
+  const [checked, setChecked] = useState('farmer');
+
+  const onChangeNameHandler = (name) => {
+    setName(name);
+  };
+  const onChangeEmailHandler = (email) => {
+    setEmail(email);
+  };
+  const onChangeHouseNoHandler = (houseNo) => {
+    setHouseNo(houseNo);
+  };
+  const onChangeDistrictHandler = (district) => {
+    setDistrict(district);
+  };
+  const onChangeStateAddressHandler = (stateAddress) => {
+    setStateAddress(stateAddress);
+  };
+  const onChangePostalCodeHandler = (postalCode) => {
+    setPostalCode(postalCode);
+  };
+  const onChangePhoneNoHandler = (phoneNo) => {
+    setPhoneNo(phoneNo);
+  };
+  const onChangeCreatedUsernameHandler = (createdUsername) => {
+    setCreatedUsername(createdUsername);
+  };
+  const onChangeCreatedPasswordHandler = (createdPassword) => {
+    setCreatedPassword(createdPassword);
+  };
+
+  const onSubmitFormHandler = async (event) => {
+    if (!name.trim() || !email.trim() || !houseNo.trim() || !district.trim() || !stateAddress.trim() || !postalCode.trim() || !phoneNo.trim() || !createdUsername.trim() || !createdPassword.trim()) {
+      alert("Invalid Credentials");
+      return;
     }
+    try {
+      const response = await axios.post(baseUrl, {
+        name,
+        email,
+        houseNo,
+        district,
+        stateAddress,
+        postalCode,
+        phoneNo,
+        createdUsername,
+        createdPassword,
+      });
+      if (response.status === 201) {
+        alert(` You have created: ${JSON.stringify(response.data)}`);
+        // console.log(` You have created: ${JSON.stringify(response.data)}`);
+        setFullName("");
+        setEmail("");
+      } else {
+        throw new Error("An error has occurred");
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  return (
+    <LinearGradient
+      style={styles.container}
+      colors={["#ffffff", "#ffc172"]}
+      start={{ x: 1, y: 0.05 }}
+      end={{ x: 1, y: 1 }}
+    >
+      <ScrollView>
+        <View>
+          <Image
+            style={styles.image}
+            source={require("../assets/images/cow.png")}
+          />
+          <Text style={styles.TopEP}>E-Pashudhan SignUp</Text>
+        </View>
+        <View style={styles.Container}>
+          <Text>Enter your Name</Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder="                              ABCD"
+            value={name}
+            onChangeText={onChangeNameHandler}
+          />
+        </View>
+        <View style={styles.Container}>
+          <Text>Enter your email</Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder="                         xyz@email.com"
+            value={email}
+            onChangeText={onChangeEmailHandler}
+          />
+        </View>
+        <View>
+          <Text>Enter your Address</Text>
+          <View style={styles.Container}>
+            {/* <Text>Enter your House No</Text> */}
+            <TextInput
+              style={styles.textInput}
+              placeholder="                           House No"
+              value={houseNo}
+              onChangeText={onChangeHouseNoHandler}
+            />
+          </View>
+          <View style={styles.Container}>
+            {/* <Text>Enter your District</Text> */}
+            <TextInput
+              style={styles.textInput}
+              placeholder="                           District"
+              value={district}
+              onChangeText={onChangeDistrictHandler}
+            />
+          </View>
+          <View style={styles.Container}>
+            {/* <Text>Enter your State</Text> */}
+            <TextInput
+              style={styles.textInput}
+              placeholder="                            State"
+              value={stateAddress}
+              onChangeText={onChangeStateAddressHandler}
+            />
+          </View>
+          <View style={styles.Container}>
+            {/* <Text>Enter your State</Text> */}
+            <TextInput
+              style={styles.textInput}
+              placeholder="                            Postal Code"
+              value={postalCode}
+              onChangeText={onChangePostalCodeHandler}
+            />
+          </View>
+        </View>
+        <View style={styles.Container}>
+          <Text>Enter your Phone Number</Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder="                    XXXXXXXXXX"
+            value={phoneNo}
+            onChangeText={onChangePhoneNoHandler}
+          />
+        </View>
+        <View>
+          <Text>Choose your role</Text>
+          <RadioButton  
+        value="farmer"
+        status={ checked === 'farmer' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('farmer')} 
+      /> <Text> Farmer</Text>
+          <RadioButton
+        value="admin"
+        status={ checked === 'admin' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('admin')}
+      />
+          <RadioButton
+        value="client"
+        status={ checked === 'client' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('client')}
+      />
+        </View>
+        <View style={styles.Container}>
+          <Text>Create a Username</Text>
+          <TextInput
+            style={styles.textInput}
+            placeholder="                        ABCD@1234"
+            value={createdUsername}
+            onChangeText={onChangeCreatedUsernameHandler}
+          />
+        </View>
+        <View style={styles.Container}>
+          <Text>Create a Password</Text>
+          <TextInput
+            style={styles.textInput}
+            secureTextEntry={true}
+            placeholder="                             XXXXXX"
+            value={createdPassword}
+            onChangeText={onChangeCreatedPasswordHandler}
+          />
+        </View>
+        {/* <View style={styles.Container}>
+          <Text>Re enter the Password</Text>
+          <TextInput
+            style={styles.textInput}
+            secureTextEntry={true}
+            placeholder="                             XXXXXX"
+          />
+        </View> */}
+        <TouchableOpacity
+          style={styles.buttonstyle}
+          
+        >
+          <Text style={styles.buttontext} onPress={onSubmitFormHandler}>SIGN UP</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </LinearGradient>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {

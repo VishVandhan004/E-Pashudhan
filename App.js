@@ -21,7 +21,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useEffect } from "react";
-import axios from "axios";
+// import axios from "axios";
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const HomeTabsComp = () => {
@@ -54,18 +54,18 @@ const HomeTabsComp2 = () => {
   );
 };
 export default function App() {
-  const fetchApi = async () => {
-    try {
-      await axios.get("http://192.168.27.231:3001/");
-      console.log(res.data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  // const fetchApi = async () => {
+  //   try {
+  //     await axios.get("http://192.168.27.231:3000/");
+  //     console.log(res.data);
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchApi();
-  }, []);
+  // useEffect(() => {
+  //   fetchApi();
+  // }, []);
   return (
     <NavigationContainer>
       <Stack.Navigator>
