@@ -11,7 +11,7 @@ import ContactUs from "./drawer/ContactUs";
 import AddCattle from "./drawer/AddCattle";
 import Profile from "./drawer/Profile";
 import ADashboard from "./drawer1/ADashboard";
-import CustomerDetails from "./drawer1/CustomerDetails";
+import CustomersDetails from "./drawer1/CustomersDetails";
 import FarmerDetails from "./drawer1/FarmerDetails";
 import AboutUs1 from "./drawer2/AboutUs1";
 import CDashboard from "./drawer2/CDashboard";
@@ -39,8 +39,8 @@ const HomeTabsComp1 = () => {
   return (
     <Drawer.Navigator>
       <Drawer.Screen name="Dashboard" component={ADashboard} />
-      <Drawer.Screen name="Customer Details" component={CustomerDetails} />
-      <Drawer.Screen name="Farmer Details" component={FarmerDetails} />
+      <Drawer.Screen name="Customers Details" component={CustomersDetails} />
+      <Drawer.Screen name="Farmers Details" component={FarmerDetails} />
     </Drawer.Navigator>
   );
 };
@@ -59,9 +59,9 @@ export default function App() {
   //     await axios.get("http://192.168.27.231:3000/");
   //     console.log(res.data);
   //   } catch (error) {
-  //     console.log(error.message);
+  //     cosole.log(error.message);
   //   }
-  // };
+  // };n
 
   // useEffect(() => {
   //   fetchApi();
@@ -132,7 +132,6 @@ export default function App() {
             headerShown: false,
           }}
         />
-
         <Stack.Screen
           name="f"
           component={FPass}

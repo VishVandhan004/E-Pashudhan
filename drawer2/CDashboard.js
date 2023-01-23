@@ -1,10 +1,10 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { StyleSheet, View, Text, Image, Dimensions } from "react-native";
+import { StyleSheet, View, Text, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 export default function CDashboard() {
   return (
-    <LinearGradient style={styles.container} colors={["#ffffff","#ffc172"]} start={{x:1,y:0.05}} end={{x:1,y:1}}>
+    <LinearGradient style={styles.container} colors={["#ffffff","#008FFF"]} start={{x:1,y:0.05}} end={{x:1,y:1}}>
       <Text style={styles.EP}>{"\u2B24"}  Milk Available</Text>
       <View style={{ flex: 1 }}>
         <LineChart
@@ -12,7 +12,7 @@ export default function CDashboard() {
             labels: ["January", "February", "March", "April", "May", "June"],
             datasets: [
               {
-                data: [100, 75, 50, 25,0],
+                data: [75, 100, 25, 50,0],
               },
             ],
           }}
@@ -49,7 +49,7 @@ export default function CDashboard() {
             labels: ["January", "February", "March", "April", "May", "June"],
             datasets: [
               {
-                data: [100, 75, 50, 25, 0],
+                data: [75, 100, 25, 8, 0],
               },
             ],
           }}

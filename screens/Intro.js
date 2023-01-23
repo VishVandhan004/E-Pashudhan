@@ -6,11 +6,11 @@ import { LinearGradient } from "expo-linear-gradient";
 
 export default function Intro({ navigation }) {
   return (
-    <LinearGradient style={styles.container} colors={["#ffffff","#ffc172"]} start={{x:1,y:0.05}} end={{x:1,y:1}}>
+    <LinearGradient style={styles.container} colors={["#ffffff","#008FFF"]} start={{x:1,y:0.05}} end={{x:1,y:1}}>
       <View>
         <Image
           style={styles.image}
-          source={require("../assets/images/cow.png")}
+          source={require("../assets/images/Clogo.png")}
         />
         <Text style={styles.TopEP}>E-Pashudhan</Text>
       </View>
@@ -48,11 +48,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   image: {
-    width: 220,
-    height: 220,
-    margin: 12,
+    width: 260,
+    height: 260,
     alignSelf: "center",
-    borderRadius: 55,
   },
   TopEP: {
     margin: 45,

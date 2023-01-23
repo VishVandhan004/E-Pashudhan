@@ -3,20 +3,14 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 export default function Profile({ navigation }) {
   return (
-    <LinearGradient style={styles.container} colors={["#ffffff","#ffc172"]} start={{x:1,y:0.05}} end={{x:1,y:1}}>
+    <LinearGradient style={styles.container} colors={["#ffffff","#008FFF"]} start={{x:1,y:0.05}} end={{x:1,y:1}}>
       <Image
         style={styles.image}
         source={require("../assets/images/person.jpg")}
       />
-      <Text style={styles.EP}>Your details:</Text>
+      <Text style={styles.EP}>Farmer details:</Text>
       <Text style={styles.txt}>
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum."
+
       </Text>
     </LinearGradient>
   );
@@ -39,13 +33,13 @@ const styles = StyleSheet.create({
   EP: {
     alignItems: "center",
     justifyContent: "center",
-    fontSize: 35,
-    margin: 99,
+    fontSize: 28,
+    margin: 90,
     fontWeight: "bold",
   },
   txt: {
     alignItems: "center",
     justifyContent: "center",
-    fontSize: 17,
+    fontSize: 5,
   },
 });

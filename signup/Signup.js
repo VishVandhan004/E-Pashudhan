@@ -1,7 +1,6 @@
 // E- PASHUDHAN SIGNUP PORTAL
 import React, { useState, useEffect } from "react";
 import { RadioButton } from 'react-native-paper';
-
 import {
   StyleSheet,
   Text,
@@ -14,7 +13,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import axios from "axios";
-const baseUrl = "http://192.168.144.208:3000/register-user";
+const baseUrl = "http://192.168.1.6:3000/register-user";
 
 // import client from '../api/client';
 export default function Signup({ navigation }) {
@@ -25,10 +24,12 @@ export default function Signup({ navigation }) {
   const [stateAddress, setStateAddress] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [phoneNo, setPhoneNo] = useState("");
+  const [role, setRole] = useState("");
   const [createdUsername, setCreatedUsername] = useState("");
   const [createdPassword, setCreatedPassword] = useState("");
 
   const [checked, setChecked] = useState('farmer');
+
 
   const onChangeNameHandler = (name) => {
     setName(name);
@@ -51,12 +52,21 @@ export default function Signup({ navigation }) {
   const onChangePhoneNoHandler = (phoneNo) => {
     setPhoneNo(phoneNo);
   };
+  // const onChangeRoleHandler = (role) => {
+  //   setRole(role);
+  // };
   const onChangeCreatedUsernameHandler = (createdUsername) => {
     setCreatedUsername(createdUsername);
   };
   const onChangeCreatedPasswordHandler = (createdPassword) => {
     setCreatedPassword(createdPassword);
   };
+  // radiobutton 
+  const items = [
+    {label : "Farmer" , value: 0},
+    {label : "Admin" , value: 1},
+    {label : "Customer" , value: 2},
+  ]
 
   const onSubmitFormHandler = async (event) => {
     if (!name.trim() || !email.trim() || !houseNo.trim() || !district.trim() || !stateAddress.trim() || !postalCode.trim() || !phoneNo.trim() || !createdUsername.trim() || !createdPassword.trim()) {
@@ -72,14 +82,23 @@ export default function Signup({ navigation }) {
         stateAddress,
         postalCode,
         phoneNo,
+        // role,
         createdUsername,
         createdPassword,
       });
       if (response.status === 201) {
         alert(` You have created: ${JSON.stringify(response.data)}`);
         // console.log(` You have created: ${JSON.stringify(response.data)}`);
-        setFullName("");
+        setName("");
         setEmail("");
+        setHouseNo("");
+        setDistrict("");
+        setStateAddress("");
+        setPostalCode("");
+        setPhoneNo("");
+        // setRole("");
+        setCreatedPassword("");
+        setCreatedPassword("");
       } else {
         throw new Error("An error has occurred");
       }
@@ -91,7 +110,7 @@ export default function Signup({ navigation }) {
   return (
     <LinearGradient
       style={styles.container}
-      colors={["#ffffff", "#ffc172"]}
+      colors={["#ffffff", "#008FFF"]}
       start={{ x: 1, y: 0.05 }}
       end={{ x: 1, y: 1 }}
     >
@@ -99,7 +118,7 @@ export default function Signup({ navigation }) {
         <View>
           <Image
             style={styles.image}
-            source={require("../assets/images/cow.png")}
+            source={require("../assets/images/Clogo.png")}
           />
           <Text style={styles.TopEP}>E-Pashudhan SignUp</Text>
         </View>
@@ -169,25 +188,25 @@ export default function Signup({ navigation }) {
             onChangeText={onChangePhoneNoHandler}
           />
         </View>
-        <View>
+        {/* <View  onChangeText={onChangeRoleHandler} >
           <Text>Choose your role</Text>
           <RadioButton  
-        value="farmer"
-        status={ checked === 'farmer' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('farmer')} 
-      /> <Text> Farmer</Text>
+          value="farmer"
+          status={ checked === 'farmer' ? 'checked' : 'unchecked' }
+          onPress={() => setChecked('farmer')} 
+          /> 
           <RadioButton 
-
         value="admin"
         status={ checked === 'admin' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('admin')}
       />
           <RadioButton
-        value="client"
-        status={ checked === 'client' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('client')}
-      />
-        </View>
+        value="customer"
+        status={ checked === 'customer' ? 'checked' : 'unchecked' }
+        onPress={() => setChecked('customer')}
+      /> */}
+        {/* </View> */}
+        {/* <RadioForm radio_props={items} initial = {value} onPress =  */}
         <View style={styles.Container}>
           <Text>Create a Username</Text>
           <TextInput
@@ -207,19 +226,12 @@ export default function Signup({ navigation }) {
             onChangeText={onChangeCreatedPasswordHandler}
           />
         </View>
-        {/* <View style={styles.Container}>
-          <Text>Re enter the Password</Text>
-          <TextInput
-            style={styles.textInput}
-            secureTextEntry={true}
-            placeholder="                             XXXXXX"
-          />
-        </View> */}
         <TouchableOpacity
-          style={styles.buttonstyle}
-          
-        >
-          <Text style={styles.buttontext} onPress={onSubmitFormHandler}>SIGN UP</Text>
+          style={styles.buttonstyle}>
+          <Text style={styles.buttontext} 
+          onPress={onSubmitFormHandler}
+          onPressOut={() => navigation.navigate("options")}
+          >SIGN UP</Text>
         </TouchableOpacity>
       </ScrollView>
     </LinearGradient>

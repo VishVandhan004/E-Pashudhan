@@ -30,6 +30,10 @@ const registrationSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  // role: {
+  //   type: String,
+  //   required: true,
+  // },
   createdUsername: {
     type: String,
     required: true,
@@ -61,3 +65,4 @@ registrationSchema.statics.userExists = async function (createdUsername) {
 };
 
 module.exports = mongoose.model("RegisteredUser", registrationSchema);
+

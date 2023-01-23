@@ -3,10 +3,10 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 export default function ContactUs1({ navigation }) {
   return (
-    <LinearGradient style={styles.container} colors={["#ffffff","#ffc172"]} start={{x:1,y:0.05}} end={{x:1,y:1}}>
+    <LinearGradient style={styles.container} colors={["#ffffff","#008FFF"]} start={{x:1,y:0.05}} end={{x:1,y:1}}>
       <Image
         style={styles.image}
-        source={require("../assets/images/cow.png")}
+        source={require("../assets/images/Clogo.png")}
       />
       <Text style={styles.Data}>
          In case of any queries, you can contact us via the information given below...{"\n"}

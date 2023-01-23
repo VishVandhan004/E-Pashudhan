@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 export default function Dashboard() {
   return (
-    <LinearGradient style={styles.container} colors={["#ffffff","#ffc172"]} start={{x:1,y:0.05}} end={{x:1,y:1}}>
+    <LinearGradient style={styles.container} colors={["#ffffff","#008FFF"]} start={{x:1,y:0.05}} end={{x:1,y:1}}>
       <Text style={styles.EP}>{"\u2B24"}  Milk Given by you</Text>
       <View style={{ flex: 1 }}>
         <LineChart
@@ -12,7 +12,7 @@ export default function Dashboard() {
             labels: ["January", "February", "March", "April", "May", "June"],
             datasets: [
               {
-                data: [100, 75, 50, 25,0],
+                data: [75,25,50,0,90],
               },
             ],
           }}
@@ -49,7 +49,7 @@ export default function Dashboard() {
             labels: ["January", "February", "March", "April", "May", "June"],
             datasets: [
               {
-                data: [100, 75, 50, 25, 0],
+                data: [60, 75, 50, 90, 6],
               },
             ],
           }}

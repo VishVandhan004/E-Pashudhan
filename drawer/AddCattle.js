@@ -3,10 +3,10 @@ import React from "react";
 import { StyleSheet, View, Text, Image, Button, TextInput } from "react-native";
 export default function AddCattle({ navigation }) {
   return (
-    <LinearGradient style={styles.container} colors={["#ffffff","#ffc172"]}>
+    <LinearGradient style={styles.container} colors={["#ffffff","#008FFF"]}>
       <Image
         style={styles.image}
-        source={require("../assets/images/cow.png")}
+        source={require("../assets/images/Clogo.png")}
       />
       <View style={styles.UContainer}>
         <Text>Enter the quantity of milk you have (in Litres..): </Text>

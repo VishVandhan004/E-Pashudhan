@@ -6,7 +6,7 @@ const port = 3000;
 // DB connection
 require('./models/db');
 
-const userRouter = require('./routes/userRoutes');
+const userRouter = require('./routes/handle');
 
 // Middleware Function
 // Method 1 - gets some data from a request, formats into json and adds it into the request body
