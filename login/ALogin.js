@@ -7,29 +7,29 @@ const baseUrl = "http://192.168.1.6:3000/login-user";
 
 export default function ALogin({ navigation }){
   
-  const [createdUsername, setCreatedUsername] = useState("");
-  const [createdPassword, setCreatedPassword] = useState("");
-  const onChangeCreatedUsernameHandler = (createdUsername) => {
-    setCreatedUsername(createdUsername);
+  const [loginUsername, setloginUsername] = useState("");
+  const [loginPassword, setloginPassword] = useState("");
+  const onChangeloginUsernameHandler = (loginUsername) => {
+    setloginUsername(loginUsername);
   };
-  const onChangeCreatedPasswordHandler = (createdPassword) => {
-    setCreatedPassword(createdPassword);
+  const onChangeloginPasswordHandler = (loginPassword) => {
+    setloginPassword(loginPassword);
   };
   const onSubmitFormHandler = async (event) => {
-    if (!createdUsername.trim() || !createdPassword.trim()) {
+    if (!loginUsername.trim() || !loginPassword.trim()) {
       alert("Invalid Credentials");
       return;
     }
     try {
       const response = await axios.post(baseUrl, {
-        createdUsername,
-        createdPassword,
+        loginUsername,
+        loginPassword,
       });
       if (response.status === 201) {
         alert(` You have created: ${JSON.stringify(response.data)}`);
         // console.log(` You have created: ${JSON.stringify(response.data)}`);
-        setCreatedPassword("");
-        setCreatedPassword("");
+        setloginUsername("");
+        setloginPassword("");
       } else {
         throw new Error("An error has occurred");
       }
@@ -51,8 +51,8 @@ return (
             <TextInput 
             style={styles.textInput} 
             placeholder="ABC@1234"
-            value={createdUsername}
-            onChangeText={onChangeCreatedUsernameHandler}
+            value={loginUsername}
+            onChangeText={onChangeloginUsernameHandler}
             />
           </View>
           <View style={styles.PContainer}>
@@ -61,8 +61,8 @@ return (
               style={styles.textInput}
               placeholder="XXXXXX"
               secureTextEntry={true}
-              value={createdPassword}
-              onChangeText={onChangeCreatedPasswordHandler}
+              value={loginPassword}
+              onChangeText={onChangeloginPasswordHandler}
                />
           </View>
           <TouchableOpacity style={styles.buttonstyle}>

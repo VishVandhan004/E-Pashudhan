@@ -1,8 +1,42 @@
 // E- PASHUDHAN FARMER LOGIN PORTAL
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import axios from "axios";
+const baseUrl = "http://192.168.1.6:3000/login-user";
+
 export default function FLogin({ navigation }){
+  const [loginUsername, setloginUsername] = useState("");
+  const [loginPassword, setloginPassword] = useState("");
+  const onChangeloginUsernameHandler = (loginUsername) => {
+    setloginUsername(loginUsername);
+  };
+  const onChangeloginPasswordHandler = (loginPassword) => {
+    setloginPassword(loginPassword);
+  };
+  const onSubmitFormHandler = async (event) => {
+    if (!loginUsername.trim() || !loginPassword.trim()) {
+      alert("Invalid Credentials");
+      return;
+    }
+    try {
+      const response = await axios.post(baseUrl, {
+        loginUsername,
+        loginPassword,
+      });
+      if (response.status === 201) {
+        alert(` You have created: ${JSON.stringify(response.data)}`);
+        // console.log(` You have created: ${JSON.stringify(response.data)}`);
+        setloginUsername("");
+        setloginPassword("");
+      } else {
+        throw new Error("An error has occurred");
+      }
+    } catch (error) {
+      alert(error);
+    }
+  };
+
 return (
         <LinearGradient style={styles.container} colors={["#ffffff", "#008FFF"]} start={{ x: 1, y: 0.05 }} end={{ x: 1, y: 1 }}>
           <View>
@@ -13,17 +47,27 @@ return (
           </View>
           <View style={styles.UContainer}>
             <Text>Enter your Username</Text>
-            <TextInput style={styles.textInput} placeholder="ABC@1234" />
+            <TextInput style={styles.textInput} 
+            placeholder="ABC@1234" 
+            value={loginUsername}
+            onChangeText={onChangeloginUsernameHandler}
+            />
           </View>
           <View style={styles.PContainer}>
             <Text>Enter your Password</Text>
             <TextInput
               style={styles.textInput}
               placeholder="XXXXXX"
-              secureTextEntry={true} />
+              secureTextEntry={true}
+              value={loginPassword}
+              onChangeText={onChangeloginPasswordHandler}
+               />
           </View>
           <TouchableOpacity style={styles.buttonstyle}>
-            <Text style={styles.txt} onPress={() => navigation.navigate("hometabcomps")}>LOGIN</Text>
+            <Text style={styles.txt}
+             onPressOut={() => navigation.navigate("hometabcomps")}
+             onPress={onSubmitFormHandler}
+             >LOGIN</Text>
           </TouchableOpacity>
           <View>
             <Text style={styles.stext} onPress={() => navigation.navigate("f")}>Forgot Password??</Text>
