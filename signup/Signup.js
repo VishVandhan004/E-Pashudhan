@@ -176,7 +176,8 @@ export default function Signup({ navigation }) {
         status={ checked === 'farmer' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('farmer')} 
       /> <Text> Farmer</Text>
-          <RadioButton
+          <RadioButton 
+
         value="admin"
         status={ checked === 'admin' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('admin')}
