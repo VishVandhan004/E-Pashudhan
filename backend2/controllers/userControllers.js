@@ -1,7 +1,7 @@
 const User = require("../models/register");
 
 exports.createUser = async (req, res) => {
-  const {
+const {
     name,
     email,
     houseNo,
@@ -15,7 +15,7 @@ exports.createUser = async (req, res) => {
   } = req.body;
 
   const userExists = await User.isThisUsernameInuse(createdUsername);
-  if (userExists) {
+  if (!userExists) {
     return res.json({
       success: false,
       message: "User already exists. Try logging in instead.",
@@ -43,8 +43,38 @@ exports.createUser = async (req, res) => {
     }
   });
 
-  res.json(user);
+  res.json({
+    success: true,
+    message: "Registered successfully"
+  });
 };
 
+exports.loginUser = async (req, res) => {
+  const {
+    loginUsername,
+    loginPassword
+  } = req.body;
+
+  const user = await User.findOne({createdUsername: loginUsername});
+  if (!user) {
+    return res.json({
+      success: false,
+      message: "User not found with specified username"
+    });
+  }
+
+  const checkPassword = await user.comparePassword(loginPassword);
+  if (!checkPassword) {
+    return res.json({
+      success: false,
+      message: "Invalid Password"
+    });
+  }
+
+  res.json({
+    success: true,
+    message: "Login successful"
+  });
+};
 
 

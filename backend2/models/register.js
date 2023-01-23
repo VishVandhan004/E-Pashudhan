@@ -29,10 +29,10 @@ const registrationSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  // role: {
-  //   type: String,
-  //   required: true,
-  // },
+  role: {
+    type: String,
+    required: true,
+  },
   createdUsername: {
     type: String,
     required: true,
@@ -84,5 +84,19 @@ registrationSchema.statics.isThisUsernameInuse = async function (createdUsername
     return false;
   }
 };
+
+registrationSchema.methods.comparePassword = async function (password) {
+  if (!password) {
+    throw new Error("Error. Password not specified");
+  }
+
+  try {
+    const result = await bcrypt.compare(password, this.createdPassword);
+    return result;
+  } catch (err) {
+    console.log(`Error >>${err}`);
+  }
+}
+
 module.exports = mongoose.model("RegisteredUser", registrationSchema);
 

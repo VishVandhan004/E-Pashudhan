@@ -3,7 +3,7 @@ import React, {  useState } from "react";
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import axios from "axios";
-const baseUrl = "http://192.168.1.6:3000/login-user";
+const baseUrl = "http://192.168.27.231:3000/login-user";
 
 export default function ALogin({ navigation }){
   
@@ -25,7 +25,7 @@ export default function ALogin({ navigation }){
         loginUsername,
         loginPassword,
       });
-      if (response.status === 201) {
+      if (response.data.success) {
         alert(` You have created: ${JSON.stringify(response.data)}`);
         // console.log(` You have created: ${JSON.stringify(response.data)}`);
         setloginUsername("");

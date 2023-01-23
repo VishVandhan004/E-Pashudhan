@@ -61,7 +61,7 @@ export default function App() {
   //   } catch (error) {
   //     cosole.log(error.message);
   //   }
-  // };n
+  // };
 
   // useEffect(() => {
   //   fetchApi();

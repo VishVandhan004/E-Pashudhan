@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import axios from "axios";
-const baseUrl = "http://192.168.1.6:3000/login-user";
+const baseUrl = "http://192.168.27.231:3000/login-user";
 
 export default function FLogin({ navigation }){
   const [loginUsername, setloginUsername] = useState("");
