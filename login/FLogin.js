@@ -24,6 +24,9 @@ export default function FLogin({ navigation }){
         loginUsername,
         loginPassword,
       });
+      if(response.data){
+        navigation.navigate("hometabcomps")
+      }
       if (response.status === 201) {
         alert(` You have created: ${JSON.stringify(response.data)}`);
         // console.log(` You have created: ${JSON.stringify(response.data)}`);
@@ -65,7 +68,6 @@ return (
           </View>
           <TouchableOpacity style={styles.buttonstyle}>
             <Text style={styles.txt}
-             onPressOut={() => navigation.navigate("hometabcomps")}
              onPress={onSubmitFormHandler}
              >LOGIN</Text>
           </TouchableOpacity>

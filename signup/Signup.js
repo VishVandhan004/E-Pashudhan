@@ -13,7 +13,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import axios from "axios";
-const baseUrl = "http://192.168.27.231:3000/register-user";
+const baseUrl = "http://192.168.1.6:3000/register-user";
 
 // import client from '../api/client';
 export default function Signup({ navigation }) {
@@ -56,7 +56,7 @@ export default function Signup({ navigation }) {
   const onChangeCreatedPasswordHandler = (createdPassword) => {
     setCreatedPassword(createdPassword);
   };
-
+  
   const onSubmitFormHandler = async (event) => {
     if (!name.trim() || !email.trim() || !houseNo.trim() || !district.trim() || !stateAddress.trim() || !postalCode.trim() || !phoneNo.trim() || !createdUsername.trim() || !createdPassword.trim()) {
       alert("Invalid Credentials");
@@ -76,6 +76,9 @@ export default function Signup({ navigation }) {
         createdPassword,
       });
 
+      if(response.data) {
+        navigation.navigate("options");
+      }
       if (response.data.success) {
         alert(` You have created: ${JSON.stringify(response.data)}`);
         // console.log(` You have created: ${JSON.stringify(response.data)}`);
@@ -223,7 +226,6 @@ export default function Signup({ navigation }) {
           style={styles.buttonstyle}>
           <Text style={styles.buttontext} 
           onPress={onSubmitFormHandler}
-          onPressOut={() => navigation.navigate("options")}
           >SIGN UP</Text>
         </TouchableOpacity>
       </ScrollView>

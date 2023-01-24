@@ -3,7 +3,7 @@ import React, {  useState } from "react";
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import axios from "axios";
-const baseUrl = "http://192.168.27.231:3000/login-user";
+const baseUrl = "http://192.192.168.1.6:3000/login-user";
 
 export default function ALogin({ navigation }){
   
@@ -25,6 +25,9 @@ export default function ALogin({ navigation }){
         loginUsername,
         loginPassword,
       });
+      if(response.data){
+         navigation.navigate("hometabcomps1")
+      }
       if (response.data.success) {
         alert(` You have created: ${JSON.stringify(response.data)}`);
         // console.log(` You have created: ${JSON.stringify(response.data)}`);
@@ -67,7 +70,6 @@ return (
           </View>
           <TouchableOpacity style={styles.buttonstyle}>
             <Text style={styles.txt}
-             onPressOut={() => navigation.navigate("hometabcomps1")}
              onPress={onSubmitFormHandler}
              >LOGIN</Text>
           </TouchableOpacity>
