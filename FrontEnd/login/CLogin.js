@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import axios from "axios";
-const baseUrl = "http://192.168.27.231:3000/login-user";
+// college LAN
+// const baseUrl = "http://192.168.27.231:3000/login-user";
+// home LAN
+const baseUrl = "http://192.168.1.6:3000/login-user";
 export default function CLogin({ navigation }){
   const [loginUsername, setloginUsername] = useState("");
   const [loginPassword, setloginPassword] = useState("");
@@ -23,10 +26,8 @@ export default function CLogin({ navigation }){
         loginUsername,
         loginPassword,
       });
-      if(response.data){
-        navigation.navigate("hometabcomps2")
-      }
       if (response.data.success) {
+        navigation.navigate("hometabcomps2")
         alert(` You have created: ${JSON.stringify(response.data)}`);
         // console.log(` You have created: ${JSON.stringify(response.data)}`);
         setloginUsername("");

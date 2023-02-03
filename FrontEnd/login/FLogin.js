@@ -3,18 +3,23 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput, Image, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import axios from "axios";
-const baseUrl = "http://192.168.27.231:3000/login-user";
 
-export default function FLogin({ navigation }){
+// College LAN
+// const baseUrl = "http://192.168.27.231:3000/login-user";
+// Home LAN
+const baseUrl = "http://192.168.1.6:3000/login-user";
+
+export default function FLogin({ navigation , route }){
   const [loginUsername, setloginUsername] = useState("");
   const [loginPassword, setloginPassword] = useState("");
   const onChangeloginUsernameHandler = (loginUsername) => {
     setloginUsername(loginUsername);
+  
   };
   const onChangeloginPasswordHandler = (loginPassword) => {
     setloginPassword(loginPassword);
   };
-  const onSubmitFormHandler = async (event) => {
+  const onSubmitFormHandler = async () => {
     if (!loginUsername.trim() || !loginPassword.trim()) {
       alert("Invalid Credentials");
       return;
@@ -24,11 +29,11 @@ export default function FLogin({ navigation }){
         loginUsername,
         loginPassword,
       });
-      if(response.data){
-        navigation.navigate("hometabcomps")
-      }
-      if (response.status === 201) {
-        alert(` You have created: ${JSON.stringify(response.data)}`);
+
+      alert(JSON.stringify(response.data))
+      if (response.data.success) {
+        navigation.navigate("hometabcomps", {details: response.data.userDetails})
+        // alert(` You have created: ${JSON.stringify(response.data)}`);
         // console.log(` You have created: ${JSON.stringify(response.data)}`);
         setloginUsername("");
         setloginPassword("");

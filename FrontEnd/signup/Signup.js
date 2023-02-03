@@ -13,9 +13,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
 import Constants from "expo-constants";
 import axios from "axios";
+// college LAN
 const baseUrl = "http://192.168.27.231:3000/register-user";
+// home LAN
+// const baseUrl = "http://192.168.1.6:3000/register-user";
 
-// import client from '../api/client';
 export default function Signup({ navigation }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -27,6 +29,7 @@ export default function Signup({ navigation }) {
   const [role, setRole] = useState("farmer");
   const [createdUsername, setCreatedUsername] = useState("");
   const [createdPassword, setCreatedPassword] = useState("");
+  // const { details } = route.params;
 
 
   const onChangeNameHandler = (name) => {
@@ -136,7 +139,6 @@ export default function Signup({ navigation }) {
         <View>
           <Text>Enter your Address</Text>
           <View style={styles.Container}>
-            {/* <Text>Enter your House No</Text> */}
             <TextInput
               style={styles.textInput}
               placeholder="                           House No"
@@ -145,7 +147,6 @@ export default function Signup({ navigation }) {
             />
           </View>
           <View style={styles.Container}>
-            {/* <Text>Enter your District</Text> */}
             <TextInput
               style={styles.textInput}
               placeholder="                           District"
@@ -154,7 +155,6 @@ export default function Signup({ navigation }) {
             />
           </View>
           <View style={styles.Container}>
-            {/* <Text>Enter your State</Text> */}
             <TextInput
               style={styles.textInput}
               placeholder="                            State"
@@ -163,7 +163,6 @@ export default function Signup({ navigation }) {
             />
           </View>
           <View style={styles.Container}>
-            {/* <Text>Enter your State</Text> */}
             <TextInput
               style={styles.textInput}
               placeholder="                            Postal Code"

@@ -23,25 +23,6 @@ export default function Options({ navigation }) {
       <TouchableOpacity style={styles.buttonstyle}>
         <Text  onPress={() =>navigation.navigate("l2")} style={styles.buttontext}> CUSTOMER </Text>
       </TouchableOpacity>
-      {/* <Text
-        style={styles.J}
-        onPress={() => navigation.navigate("hometabcomps")}
-      >
-        {" "}
-        Just want to Browse
-      </Text>
-      <Text
-        style={styles.J}
-        onPress={() => navigation.navigate("hometabcomps1")}
-      >
-        Admin
-      </Text>
-      <Text
-        style={styles.J}
-        onPress={() => navigation.navigate("hometabcomps2")}
-      >
-        Customer
-      </Text> */}
     </LinearGradient>
   );
 }
@@ -79,10 +60,5 @@ const styles = StyleSheet.create({
     margin: 45,
     fontWeight: "bold",
     fontSize: 45,
-  },
-  J: {
-    fontWeight: "bold",
-    fontSize: 15,
-    margin: 20,
   },
 });

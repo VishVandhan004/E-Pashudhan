@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require('bcrypt');
+// schema for registration 
 const registrationSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -52,26 +53,7 @@ registrationSchema.pre("save", function (next) {
     });
   }
 });
-
-// // User checking
-// registrationSchema.statics.userExists = async function (createdUsername) {
-//   //Didn't work when the async function was an arrow function (Why??)     [Arrow functions can't use 'this' keyword]
-//   if (!createdUsername) {
-//     throw new Error("Error. No username provided.");
-//   }
-
-//   try {
-//     const user = await this.findOne({ createdUsername });
-//     if (user) {
-//       return true;
-//     }
-//     return false;
-//   } catch (err) {
-//     console.error(`Error in existingUser function. >> ${err}`);
-
-//     return true;
-//   }
-// };
+// checking if there already exists any username 
 registrationSchema.statics.isThisUsernameInuse = async function (createdUsername) {
   if (!createdUsername) throw new Error("Invalid Username");
   try {
@@ -84,7 +66,7 @@ registrationSchema.statics.isThisUsernameInuse = async function (createdUsername
     return false;
   }
 };
-
+// comparing the password
 registrationSchema.methods.comparePassword = async function (password) {
   if (!password) {
     throw new Error("Error. Password not specified");

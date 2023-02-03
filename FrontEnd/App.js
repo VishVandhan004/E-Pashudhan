@@ -20,14 +20,20 @@ import Options from "../FrontEnd/screens/Options";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+// import userDetails from "./login/FLogin"
 import { useEffect } from "react";
 // import axios from "axios";
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
-const HomeTabsComp = () => {
+// const userDetails = require("./login/FLogin")
+
+const HomeTabsComp = ({route}) => {
+  const { userDetails } = route.params;
+  // console.log(userDetails)
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Profile" component={Profile} />
+      <Drawer.Screen name="Profile" 
+      component={(props) => <Profile {...props} details={userDetails} />} />
       <Drawer.Screen name="Dashboard" component={Dashboard} />
       <Drawer.Screen name="Add Cattle" component={AddCattle} />
       <Drawer.Screen name="About Us" component={AboutUs} />
@@ -54,18 +60,6 @@ const HomeTabsComp2 = () => {
   );
 };
 export default function App() {
-  // const fetchApi = async () => {
-  //   try {
-  //     await axios.get("http://192.168.27.231:3000/");
-  //     console.log(res.data);
-  //   } catch (error) {
-  //     cosole.log(error.message);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   fetchApi();
-  // }, []);
   return (
     <NavigationContainer>
       <Stack.Navigator>
